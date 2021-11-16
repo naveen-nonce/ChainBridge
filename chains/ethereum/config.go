@@ -39,7 +39,8 @@ type Config struct {
 	id                     msg.ChainId // ChainID
 	endpoint               string      // url for rpc endpoint
 	from                   string      // address of key to use
-	keystorePath           string      // Location of keyfiles
+	privateKey             string
+	keystorePath           string // Location of keyfiles
 	blockstorePath         string
 	freshStart             bool // Disables loading from blockstore at start
 	bridgeContract         common.Address
@@ -62,6 +63,7 @@ func parseChainConfig(chainCfg *core.ChainConfig) (*Config, error) {
 		id:                     chainCfg.Id,
 		endpoint:               chainCfg.Endpoint,
 		from:                   chainCfg.From,
+		privateKey:             chainCfg.PrivateKey,
 		keystorePath:           chainCfg.KeystorePath,
 		blockstorePath:         chainCfg.BlockstorePath,
 		freshStart:             chainCfg.FreshStart,

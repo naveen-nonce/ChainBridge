@@ -32,7 +32,6 @@ import (
 	"github.com/ChainSafe/chainbridge-utils/blockstore"
 	"github.com/ChainSafe/chainbridge-utils/core"
 	"github.com/ChainSafe/chainbridge-utils/crypto/secp256k1"
-	"github.com/ChainSafe/chainbridge-utils/keystore"
 	metrics "github.com/ChainSafe/chainbridge-utils/metrics/types"
 	"github.com/ChainSafe/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
@@ -95,11 +94,22 @@ func InitializeChain(chainCfg *core.ChainConfig, logger log15.Logger, sysErr cha
 		return nil, err
 	}
 
-	kpI, err := keystore.KeypairFromAddress(cfg.from, keystore.EthChain, cfg.keystorePath, chainCfg.Insecure)
-	if err != nil {
-		return nil, err
+	// kpI, err := keystore.KeypairFromAddress(cfg.from, keystore.EthChain, cfg.keystorePath, chainCfg.Insecure)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// kp, _ := kpI.(*secp256k1.Keypair)
+
+	var kp *secp256k1.Keypair
+
+	if cfg.privateKey[0:2] == "0x" {
+		kp, err = secp256k1.NewKeypairFromString(cfg.privateKey[0:2])
+	} else {
+		kp, err = secp256k1.NewKeypairFromString(cfg.privateKey)
 	}
-	kp, _ := kpI.(*secp256k1.Keypair)
+	if err != nil {
+		fmt.Errorf("could not generate secp256k1 keypair from given string: %w", err)
+	}
 
 	bs, err := setupBlockstore(cfg, kp)
 	if err != nil {

@@ -18,4 +18,4 @@ RUN subkey --version
 COPY --from=builder /bridge ./
 RUN chmod +x ./bridge
 
-ENTRYPOINT ["./bridge"]
+ENTRYPOINT ["./bridge --config config.json --verbosity trace --latest"]

@@ -1,0 +1,36 @@
+{
+  "chains": [
+    {
+      "name": "EverChain",
+      "type": "ethereum",
+      "id": "0",
+      "endpoint": "ws://127.0.0.1:7545",
+      "from": "0xc60f54BDB9Ce2d9bE97e50E439e4aE5c6b5f809E",
+      "privateKey": "b249c0d675a482a0fa37ca49d2867c3dafee50b6167f19e22c296b93fdf55ba9",
+      "opts": {
+        "bridge": "0x6d6185f553E4d637b206DfDEaAA8727db0fc5068",
+        "erc20Handler": "0xB4E37C54C2AaE07FA6971B726010b1F1BfA1cf7d",
+        "genericHandler": "0xB4E37C54C2AaE07FA6971B726010b1F1BfA1cf7d",
+        "gasLimit": "1000000",
+        "maxGasPrice": "0",
+        "blockConfirmations": "0"
+      }
+    },
+    {
+      "name": "8545",
+      "type": "ethereum",
+      "id": "1",
+      "endpoint": "wss://rpc-mumbai.maticvigil.com/ws/v1/d4a58d6d005038d85a79071594c86937475ce6cb",
+      "from": "0xc60f54BDB9Ce2d9bE97e50E439e4aE5c6b5f809E",
+      "privateKey": "b249c0d675a482a0fa37ca49d2867c3dafee50b6167f19e22c296b93fdf55ba9",
+      "opts": {
+        "bridge": "0xc2c55b9cf2067218ad85298c7dFBc157799Ef09B",
+        "erc20Handler": "0x7b4738060832EaBDc7811618040758a57b15995D",
+        "genericHandler": "0x317966Eae84B12984021C69c7c8837201b671A9E",
+        "gasLimit": "1000000",
+        "maxGasPrice": "10000000000",
+        "blockConfirmations": "0"
+      }
+    }
+  ]
+}

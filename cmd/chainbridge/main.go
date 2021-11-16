@@ -177,6 +177,7 @@ func run(ctx *cli.Context) error {
 			Id:             msg.ChainId(chainId),
 			Endpoint:       chain.Endpoint,
 			From:           chain.From,
+			PrivateKey: 	chain.PrivateKey,
 			KeystorePath:   ks,
 			Insecure:       insecure,
 			BlockstorePath: ctx.String(config.BlockstorePathFlag.Name),
