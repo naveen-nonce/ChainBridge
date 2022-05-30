@@ -10,10 +10,10 @@ import (
 	utils "github.com/ChainSafe/ChainBridge/shared/substrate"
 	"github.com/ChainSafe/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
-	gsrpc "github.com/centrifuge/go-substrate-rpc-client"
-	"github.com/centrifuge/go-substrate-rpc-client/rpc/author"
 	"github.com/centrifuge/go-substrate-rpc-client/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/types"
+	gsrpc "github.com/centrifuge/go-substrate-rpc-client/v4"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/rpc/author"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 )
 
 type Connection struct {
@@ -99,10 +99,10 @@ func (c *Connection) SubmitTx(method utils.Method, args ...interface{}) error {
 	ext := types.NewExtrinsic(call)
 
 	// Get latest runtime version
-	rv, err := c.api.RPC.State.GetRuntimeVersionLatest()
-	if err != nil {
-		return err
-	}
+	// rv, err := c.api.RPC.State.GetRuntimeVersionLatest()
+	// if err != nil {
+	// 	return err
+	// }
 
 	c.nonceLock.Lock()
 	latestNonce, err := c.getLatestNonce()
@@ -115,21 +115,21 @@ func (c *Connection) SubmitTx(method utils.Method, args ...interface{}) error {
 	}
 
 	// Sign the extrinsic
-	o := types.SignatureOptions{
-		BlockHash:          c.genesisHash,
-		Era:                types.ExtrinsicEra{IsMortalEra: false},
-		GenesisHash:        c.genesisHash,
-		Nonce:              types.NewUCompactFromUInt(uint64(c.nonce)),
-		SpecVersion:        rv.SpecVersion,
-		Tip:                types.NewUCompactFromUInt(0),
-		TransactionVersion: 1,
-	}
+	// o := types.SignatureOptions{
+	// 	BlockHash:   c.genesisHash,
+	// 	Era:         types.ExtrinsicEra{IsMortalEra: false},
+	// 	GenesisHash: c.genesisHash,
+	// 	Nonce:       types.NewUCompactFromUInt(uint64(c.nonce)),
+	// 	SpecVersion: rv.SpecVersion,
+	// 	Tip:         types.NewUCompactFromUInt(0),
+	// 	// TransactionVersion: 1,
+	// }
 
-	err = ext.Sign(*c.key, o)
-	if err != nil {
-		c.nonceLock.Unlock()
-		return err
-	}
+	// err = ext.Sign(*c.key, o)
+	// if err != nil {
+	c.nonceLock.Unlock()
+	// return err
+	// }
 
 	// Submit and watch the extrinsic
 	sub, err := c.api.RPC.Author.SubmitAndWatchExtrinsic(ext)
@@ -181,7 +181,8 @@ func (c *Connection) queryStorage(prefix, method string, arg1, arg2 []byte, resu
 
 // TODO: Add this to GSRPC
 func getConst(meta *types.Metadata, prefix, name string, res interface{}) error {
-	for _, mod := range meta.AsMetadataV12.Modules {
+	for _, mod := range meta.AsMetadataV14.Pallets {
+		fmt.Println(mod.Name)
 		if string(mod.Name) == prefix {
 			for _, cons := range mod.Constants {
 				if string(cons.Name) == name {
@@ -195,6 +196,7 @@ func getConst(meta *types.Metadata, prefix, name string, res interface{}) error 
 
 func (c *Connection) getConst(prefix, name string, res interface{}) error {
 	meta := c.getMetadata()
+	// fmt.Println(meta.AsMetadataV14.Pallets)
 	return getConst(&meta, prefix, name, res)
 }
 

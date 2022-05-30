@@ -94,6 +94,7 @@ func InitializeChain(chainCfg *core.ChainConfig, logger log15.Logger, sysErr cha
 		return nil, err
 	}
 
+<<<<<<< Updated upstream
 	// kpI, err := keystore.KeypairFromAddress(cfg.from, keystore.EthChain, cfg.keystorePath, chainCfg.Insecure)
 	// if err != nil {
 	// 	return nil, err
@@ -107,9 +108,34 @@ func InitializeChain(chainCfg *core.ChainConfig, logger log15.Logger, sysErr cha
 	} else {
 		kp, err = secp256k1.NewKeypairFromString(cfg.privateKey)
 	}
+=======
+<<<<<<< Updated upstream
+=======
+	var kp *secp256k1.Keypair
+
+>>>>>>> Stashed changes
+	kpI, err := keystore.KeypairFromAddress(cfg.from, keystore.EthChain, cfg.keystorePath, chainCfg.Insecure)
+>>>>>>> Stashed changes
 	if err != nil {
 		fmt.Errorf("could not generate secp256k1 keypair from given string: %w", err)
 	}
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+	kp, _ := kpI.(*secp256k1.Keypair)
+=======
+	kp, _ = kpI.(*secp256k1.Keypair)
+
+	// if cfg.privateKey[0:2] == "0x" {
+	// 	kp, err = secp256k1.NewKeypairFromString(cfg.privateKey[0:2])
+	// } else {
+	// 	kp, err = secp256k1.NewKeypairFromString(cfg.privateKey)
+	// }
+	// if err != nil {
+	// 	fmt.Errorf("could not generate secp256k1 keypair from given string: %w", err)
+	// }
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 	bs, err := setupBlockstore(cfg, kp)
 	if err != nil {

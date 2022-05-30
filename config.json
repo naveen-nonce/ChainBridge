@@ -8,9 +8,15 @@
       "from": "0xc60f54BDB9Ce2d9bE97e50E439e4aE5c6b5f809E",
       "privateKey": "b249c0d675a482a0fa37ca49d2867c3dafee50b6167f19e22c296b93fdf55ba9",
       "opts": {
+<<<<<<< Updated upstream
         "bridge": "0x6d6185f553E4d637b206DfDEaAA8727db0fc5068",
         "erc20Handler": "0xB4E37C54C2AaE07FA6971B726010b1F1BfA1cf7d",
         "genericHandler": "0xB4E37C54C2AaE07FA6971B726010b1F1BfA1cf7d",
+=======
+        "bridge": "0x3484754e57A3a00576a62C7862Ba65f7E026B9cE",
+        "erc20Handler": "0xdBd081003F519F9a1f809126342C9613BbBeEd0B",
+        "genericHandler": "0xdBd081003F519F9a1f809126342C9613BbBeEd0B",
+>>>>>>> Stashed changes
         "gasLimit": "1000000",
         "maxGasPrice": "0",
         "blockConfirmations": "0"

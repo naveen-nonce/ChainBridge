@@ -1,0 +1,34 @@
+{
+  "chains": [
+    {
+      "name": "Elysium",
+      "type": "ethereum",
+      "id": "0",
+      "endpoint": "wss://elysium-dev2-socket1.vulcanforged.com",
+      "from": "0xc60f54BDB9Ce2d9bE97e50E439e4aE5c6b5f809E",
+      "opts": {
+        "bridge": "0xb54f3Eb7369B28f7aD3aEEa7d0F5102fb5c76664",
+        "erc20Handler": "0xfa4926B52Cf980007aB09fcCFa84A1eBCddF7B65",
+        "genericHandler": "0xfa4926B52Cf980007aB09fcCFa84A1eBCddF7B65",
+        "gasLimit": "1000000",
+        "maxGasPrice": "10000000000",
+        "blockConfirmations": "0"
+      }
+    },
+    {
+      "name": "Ropsten",
+      "type": "ethereum",
+      "id": "3",
+      "endpoint": "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+      "from": "0xc60f54BDB9Ce2d9bE97e50E439e4aE5c6b5f809E",
+      "opts": {
+        "bridge": "0xc3e860b9143231f0c44be6a18d67ea9334c0247b",
+        "erc20Handler": "0xaAa6932F2C0397D01DA877591938c71c6e8cC10d",
+        "genericHandler": "0xaAa6932F2C0397D01DA877591938c71c6e8cC10d",
+        "gasLimit": "1000000",
+        "maxGasPrice": "30000000000",
+        "blockConfirmations": "0"
+      }
+    }
+  ]
+}

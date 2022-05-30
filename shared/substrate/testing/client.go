@@ -12,7 +12,7 @@ import (
 	"github.com/ChainSafe/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
 	"github.com/centrifuge/go-substrate-rpc-client/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 )
 
 func CreateClient(t *testing.T, key *signature.KeyringPair, endpoint string) *utils.Client {
